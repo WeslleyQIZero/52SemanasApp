@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginLeft="25dp"
+    android:layout_marginRight="25dp"
+    android:layout_marginTop="15dp"
+    android:layout_marginBottom="15dp">
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_baseColor="#232121"
+        app:met_primaryColor="#000"
+        app:met_minCharacters="5"
+        app:met_maxCharacters="20"
+        app:met_floatingLabel="normal"
+        app:met_iconLeft="@mipmap/ic_trending_up_black_24dp"
+        app:met_errorColor="#FF00"
+        app:met_iconPadding="2dp"
+        android:hint="Objetivo"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:inputType="number"
+        android:layout_height="wrap_content"
+        app:met_baseColor="#232121"
+        app:met_primaryColor="#000"
+        app:met_floatingLabel="normal"
+        app:met_iconLeft="@mipmap/ic_attach_money_black_24dp"
+        app:met_errorColor="#FF00"
+        app:met_iconPadding="2dp"
+        android:hint="Valor Inicial"/>
+
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:id="@+id/data_inicial"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:met_baseColor="#232121"
+        app:met_primaryColor="#000"
+        app:met_floatingLabel="normal"
+        app:met_iconLeft="@mipmap/ic_date_range_black_24dp"
+        app:met_errorColor="#FF00"
+        app:met_iconPadding="2dp"
+        android:layout_marginBottom="12dp"
+        android:hint="Data de Inicio"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginBottom="10dp">
+
+        <TextView
+            android:id="@+id/txt_v"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingLeft="13dp"
+            android:gravity="center"
+            android:layout_marginTop="3dp"
+            android:drawableLeft="@mipmap/ic_remove_red_eye_black_24dp"
+            android:text="Visualização:"/>
+
+        <RadioGroup
+            android:layout_width="wrap_content"
+            android:orientation="horizontal"
+            android:layout_toRightOf="@+id/txt_v"
+            android:layout_height="wrap_content">
+
+            <RadioButton
+                android:id="@+id/radio_mes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:layout_toRightOf="@+id/txt_v"
+                android:text="Mês"/>
+
+            <RadioButton
+                android:id="@+id/radio_semana"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="false"
+                android:text="Semana"/>
+
+        </RadioGroup>
+
+    </RelativeLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/btn_ok"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Salvar"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            android:theme="@style/MyButtonOk"/>
+    </LinearLayout>
+</LinearLayout>
