@@ -11,16 +11,11 @@ public class Desafio {
     private String objetivo;
     private Double valorInicial;
     private Date dataInicio;
+    private Date dataFim;
+    private int porcentagem;
     private int visualizacao;
 
     public Desafio(){};
-
-    public Desafio(String objetivo, Double valorInicial, Date dataInicio, int visualizacao) {
-        this.objetivo = objetivo;
-        this.valorInicial = valorInicial;
-        this.dataInicio = dataInicio;
-        this.visualizacao = visualizacao;
-    }
 
     public String getObjetivo() {
         return objetivo;
@@ -52,5 +47,21 @@ public class Desafio {
 
     public void setVisualizacao(int visualizacao) {
         this.visualizacao = visualizacao;
+    }
+
+    public Date getDataFim() {
+        return dataFim;
+    }
+
+    public void setDataFim(Date dataFim) {
+        this.dataFim = dataFim;
+    }
+
+    public int getPorcentagem() {
+        return porcentagem;
+    }
+
+    public void setPorcentagem(int porcentagem) {
+        this.porcentagem = porcentagem;
     }
 }

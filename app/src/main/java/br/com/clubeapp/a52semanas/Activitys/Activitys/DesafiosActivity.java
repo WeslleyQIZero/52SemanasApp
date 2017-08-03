@@ -17,7 +17,6 @@ import br.com.clubeapp.a52semanas.Activitys.Utils.SlidingTabLayout;
 import br.com.clubeapp.a52semanas.R;
 
 public class DesafiosActivity extends AppCompatActivity {
-    private SlidingTabLayout mSlidingTabLayout;
     private ViewPager mViewPager;
     private TabLayout tabLayout;
 
@@ -38,6 +37,8 @@ public class DesafiosActivity extends AppCompatActivity {
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
         tabLayout.setupWithViewPager(mViewPager);
         setupTabIcons();
+
+
     }
 
     private void setupTabIcons() {

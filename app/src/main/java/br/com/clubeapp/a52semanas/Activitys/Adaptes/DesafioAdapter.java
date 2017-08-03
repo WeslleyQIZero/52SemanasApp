@@ -30,24 +30,28 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
 
     public class DesafioHolder extends RecyclerView.ViewHolder {
 
-        public TextView produto;
-        public TextView valor;
-        public TextView quant;
-        public TextView sigla;
+        public TextView objetivo;
+        public TextView valorInicial;
+        public TextView dataInicial;
+        public TextView dataFinal;
+        public TextView porcentagem;
 
         public DesafioHolder(View itemView) {
             super(itemView);
+            objetivo = (TextView) itemView.findViewById(R.id.lbobjetivo);
+            valorInicial = (TextView) itemView.findViewById(R.id.lbvalor);
+            dataInicial = (TextView) itemView.findViewById(R.id.lb_datainicial);
+            dataFinal = (TextView) itemView.findViewById(R.id.lb_datafinal);
         }
-
     }
 
 
     @Override
     public void onBindViewHolder(DesafioHolder holder, int position) {
-        holder.produto.setText(desafios.get(position).getObjetivo());
-        holder.valor.setText(String.valueOf(desafios.get(position).getValorInicial()));
-        holder.quant.setText(String.valueOf(desafios.get(position).getDataInicio()));
-        holder.sigla.setText(String.valueOf(desafios.get(position).getVisualizacao()));
+        holder.objetivo.setText(desafios.get(position).getObjetivo());
+        holder.valorInicial.setText(String.valueOf(desafios.get(position).getValorInicial()));
+        holder.dataInicial.setText(String.valueOf(desafios.get(position).getDataInicio()));
+        holder.dataFinal.setText(String.valueOf(desafios.get(position).getDataFim()));
     }
 
     @Override

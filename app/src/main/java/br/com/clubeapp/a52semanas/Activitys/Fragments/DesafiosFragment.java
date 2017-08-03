@@ -1,7 +1,6 @@
 package br.com.clubeapp.a52semanas.Activitys.Fragments;
 
 import android.app.DatePickerDialog;
-import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;

@@ -1,17 +1,25 @@
 package br.com.clubeapp.a52semanas.Activitys.Activitys;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wdullaer.materialdatetimepicker.date.DatePickerDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 
+import br.com.clubeapp.a52semanas.Activitys.Adaptes.DesafioAdapter;
+import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
 import br.com.clubeapp.a52semanas.R;
 
 public class NovoDesafioActivity extends AppCompatActivity implements DatePickerDialog.OnDateSetListener,
@@ -19,6 +27,12 @@ public class NovoDesafioActivity extends AppCompatActivity implements DatePicker
 
     private int year,month,day;
     private  EditText dataInicial;
+    private Button btn_salvar;
+
+    private DesafioAdapter mAdapter = new DesafioAdapter(new ArrayList<>(0));;
+    private Desafio desafio;
+
+    private static final DateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +59,25 @@ public class NovoDesafioActivity extends AppCompatActivity implements DatePicker
 
         getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        btn_salvar = (Button) findViewById(R.id.btn_ok);
+
+        btn_salvar.setOnClickListener(new View.OnClickListener() {
+
+            Calendar c = Calendar.getInstance();
+
+            @Override
+            public void onClick(View view) {
+                desafio = new Desafio();
+                desafio.setValorInicial(100.00);
+                desafio.setObjetivo("Carro Novo");
+                desafio.setDataInicio(c);
+                desafio.setDataFinal(c);
+
+                finish();
+            }
+        });
+
     }
 
     public boolean onOptionsItemSelected(MenuItem item){
