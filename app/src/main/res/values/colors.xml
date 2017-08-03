@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="colorPrimary">#8492A6</color>  <!--toolbar C0CCDA-->
+    <color name="colorPrimaryDark">#C0CCDA</color> <!--topo  8492A6-->
+    <color name="colorAccent">#3B4859</color>  <!--button-->
     <color name="white">#FFF</color>
     <color name="green">#FF1CBA4E</color>
     <color name="red">#df0e0e</color>

@@ -1,6 +1,7 @@
 package br.com.clubeapp.a52semanas.Activitys.Models;
 
-import java.sql.Date;
+
+import java.util.Date;
 
 /**
  * Created by Denis Souza on 11/07/2017.

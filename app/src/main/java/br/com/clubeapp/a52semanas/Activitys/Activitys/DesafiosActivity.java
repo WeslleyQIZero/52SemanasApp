@@ -7,11 +7,13 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.widget.TextView;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.TabsAdapter;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.AjudaFragment;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.DesafiosFragment;
+import br.com.clubeapp.a52semanas.Activitys.Utils.SlidingTabLayout;
 import br.com.clubeapp.a52semanas.R;
 
 public class DesafiosActivity extends AppCompatActivity {
@@ -42,12 +44,10 @@ public class DesafiosActivity extends AppCompatActivity {
 
         TextView tabOne = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabOne.setText("DESAFIOS");
-        tabOne.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_view_list, 0, 0);
         tabLayout.getTabAt(0).setCustomView(tabOne);
 
         TextView tabTwo = (TextView) LayoutInflater.from(this).inflate(R.layout.custom_tab, null);
         tabTwo.setText("AJUDA");
-        tabTwo.setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.ic_help, 0, 0);
         tabLayout.getTabAt(1).setCustomView(tabTwo);
     }
 
@@ -56,5 +56,11 @@ public class DesafiosActivity extends AppCompatActivity {
         adapter.addFrag(new DesafiosFragment(), "DESAFIOS");
         adapter.addFrag(new AjudaFragment(), "AJUDA");
         viewPager.setAdapter(adapter);
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu){
+        getMenuInflater().inflate(R.menu.menu_desafios, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 }
