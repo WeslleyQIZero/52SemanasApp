@@ -13,7 +13,8 @@ public class Desafio {
     private Date dataInicio;
     private Date dataFim;
     private int porcentagem;
-    private int visualizacao;
+    private String visualizacao;
+    private  int semana;
 
     public Desafio(){};
 
@@ -41,11 +42,11 @@ public class Desafio {
         this.dataInicio = dataInicio;
     }
 
-    public int getVisualizacao() {
+    public String getVisualizacao() {
         return visualizacao;
     }
 
-    public void setVisualizacao(int visualizacao) {
+    public void setVisualizacao(String visualizacao) {
         this.visualizacao = visualizacao;
     }
 
@@ -63,5 +64,13 @@ public class Desafio {
 
     public void setPorcentagem(int porcentagem) {
         this.porcentagem = porcentagem;
+    }
+
+    public int getSemana() {
+        return semana;
+    }
+
+    public void setSemana(int semana) {
+        this.semana = semana;
     }
 }

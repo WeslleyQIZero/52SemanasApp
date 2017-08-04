@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="br.com.clubeapp.a52semanas.Activitys.Activitys.DesafiosActivity">
+
+    <item android:id="@+id/menu_item_progress"
+        android:icon="@drawable/ic_trending"
+        android:title=""
+        app:showAsAction="always"/>
+</menu>

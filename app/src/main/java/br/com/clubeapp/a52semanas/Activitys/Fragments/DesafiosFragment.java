@@ -8,11 +8,14 @@ import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -24,6 +27,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Locale;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.DesafioAdapter;
 import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
@@ -40,6 +44,9 @@ public class DesafiosFragment extends Fragment{
     private Date date;
     private Desafio desafio = new Desafio();
 
+    private RadioGroup radioGroup;
+    private RadioButton radioButton;
+
     public DesafiosFragment() {}
 
     @Override
@@ -47,7 +54,6 @@ public class DesafiosFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         View view = inflater.inflate(R.layout.fragment_desafios, container, false);
-
 
         //implementaçao floatingActionButton novo desafio
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -79,21 +85,29 @@ public class DesafiosFragment extends Fragment{
                     @Override
                     public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
 
-                        //convertendo string para date
-                        SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
+                        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+
+                        //convertendo date para string
                         try {
-                            date = format.parse(dataInicial.getText().toString());
-                            Toast.makeText(getContext(), ""+date, Toast.LENGTH_SHORT).show();
+                            date = formatter.parse(dataInicial.getText().toString());
+
                         } catch (ParseException e) {
                             e.printStackTrace();
-                            Toast.makeText(getContext(), ""+e.getMessage(), Toast.LENGTH_SHORT).show();
                         }
 
+                        //recuperando radio button
+                        radioGroup = (RadioGroup)dialog.getCustomView().findViewById(R.id.radio);
+
+                        int selectedId = radioGroup.getCheckedRadioButtonId();
+
+                        radioButton = (RadioButton)dialog.getCustomView().findViewById(selectedId);
+
+                        desafio.setVisualizacao(radioButton.getText().toString());
                         desafio.setObjetivo(objetivo.getText().toString());
                         desafio.setValorInicial(Double.parseDouble(valorInicial.getText().toString()));
                         desafio.setDataInicio(date);
 
-                        //mAdapter.updateList(desafio);
+                        mAdapter.updateList(desafio);
                     }
                 })
                 .onNegative(new MaterialDialog.SingleButtonCallback() {
@@ -109,6 +123,7 @@ public class DesafiosFragment extends Fragment{
         valorInicial = (EditText) dialog.getCustomView().findViewById(R.id.valor_inicial);
         objetivo = (EditText) dialog.getCustomView().findViewById(R.id.objetivo);
 
+        dataInicial.setInputType(InputType.TYPE_NULL);
         dataInicial.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -134,7 +149,7 @@ public class DesafiosFragment extends Fragment{
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new DesafioAdapter(new ArrayList<>(0));
+        mAdapter = new DesafioAdapter(new ArrayList<>(0),getContext());
 
         recyclerView.setAdapter(mAdapter);
 

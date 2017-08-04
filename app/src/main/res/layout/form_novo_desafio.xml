@@ -53,6 +53,7 @@
         android:layout_marginBottom="10dp">
 
         <RadioGroup
+            android:id="@+id/radio"
             android:layout_width="wrap_content"
             android:orientation="horizontal"
             android:layout_height="wrap_content">
@@ -61,24 +62,23 @@
                 android:id="@+id/radio_dia"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="true"
+                android:checked="false"
                 android:layout_toRightOf="@+id/txt_v"
                 android:text="Dia"/>
-
-            <RadioButton
-                android:id="@+id/radio_mes"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:checked="true"
-                android:layout_toRightOf="@+id/txt_v"
-                android:text="Mês"/>
 
             <RadioButton
                 android:id="@+id/radio_semana"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:checked="false"
+                android:checked="true"
                 android:text="Semana"/>
+
+            <RadioButton
+                android:id="@+id/radio_mes"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/txt_v"
+                android:text="Mês"/>
         </RadioGroup>
     </RelativeLayout>
 </LinearLayout>

@@ -10,6 +10,7 @@ import java.util.List;
 
 import br.com.clubeapp.a52semanas.Activitys.Fragments.AjudaFragment;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.DesafiosFragment;
+import br.com.clubeapp.a52semanas.Activitys.Fragments.SobreFragment;
 
 /**
  * Created by Denis Souza on 23/07/2017.
@@ -18,7 +19,7 @@ import br.com.clubeapp.a52semanas.Activitys.Fragments.DesafiosFragment;
 public class TabsAdapter extends FragmentPagerAdapter {
 
     private Context mContext;
-    private String[] titles = {"DESAFIOS","AJUDA"};
+    private String[] titles = {"DESAFIOS","AJUDA","SOBRE"};
 
     private final List<Fragment> mFragmentList = new ArrayList<>();
     private final List<String> mFragmentTitleList = new ArrayList<>();
@@ -36,6 +37,9 @@ public class TabsAdapter extends FragmentPagerAdapter {
         }
         else if(position == 1){
             f = new AjudaFragment();
+        }
+        else if(position == 2){
+            f = new SobreFragment();
         }
         return f;
     }
