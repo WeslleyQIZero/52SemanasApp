@@ -50,31 +50,14 @@ public class ItensDesafioActivity extends AppCompatActivity {
     }
 
     public  ArrayList<Desafio> preencherLista(){
-        Desafio d = new Desafio();
-        d.setObjetivo(getIntent().getStringExtra("objetivo"));
-        d.setValorInicial(100.0);
-        d.setSemana(1);
 
-        Desafio d2 = new Desafio();
-        d2.setObjetivo(getIntent().getStringExtra("objetivo"));
-        d2.setValorInicial(200.0);
-        d2.setSemana(2);
-
-        Desafio d3 = new Desafio();
-        d3.setObjetivo(getIntent().getStringExtra("objetivo"));
-        d3.setValorInicial(300.0);
-        d3.setSemana(3);
-
-        Desafio d4 = new Desafio();
-        d4.setObjetivo(getIntent().getStringExtra("objetivo"));
-        d4.setValorInicial(400.0);
-        d4.setSemana(4);
-
-        desafiosList.add(d);
-        desafiosList.add(d2);
-        desafiosList.add(d3);
-        desafiosList.add(d4);
-
+        for(int i=1;i<52;i++) {
+            Desafio d = new Desafio();
+            d.setObjetivo(getIntent().getStringExtra("objetivo"));
+            d.setValorInicial(100.0);
+            d.setSemana(i);
+            desafiosList.add(d);
+        }
         return desafiosList;
     }
 

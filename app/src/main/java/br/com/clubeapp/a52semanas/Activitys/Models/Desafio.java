@@ -1,6 +1,9 @@
 package br.com.clubeapp.a52semanas.Activitys.Models;
 
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 /**
@@ -8,15 +11,49 @@ import java.util.Date;
  */
 
 public class Desafio {
+
+    private Long id;
     private String objetivo;
     private Double valorInicial;
     private Date dataInicio;
+    private String visualizacao;
     private Date dataFim;
     private int porcentagem;
-    private String visualizacao;
     private  int semana;
 
     public Desafio(){};
+
+    public Desafio(Long id,String pNome, Date pDatainicio,String pTipoViasualização,Double pValor){
+        DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String datetext = df.format(pDatainicio);
+
+        this.id = id;
+        this.objetivo = pNome;
+        this.dataInicio = pDatainicio;
+        this.visualizacao = pTipoViasualização;
+        this.valorInicial= pValor;
+    }
+    public static Date stringToDate(String data1) {
+        SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+        // f.setLenient(false);
+        Date d1 = null;
+        try {
+            d1 = f.parse(data1);
+        } catch (ParseException e) {
+
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return d1;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
 
     public String getObjetivo() {
         return objetivo;
