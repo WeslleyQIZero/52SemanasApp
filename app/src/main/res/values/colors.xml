@@ -6,4 +6,15 @@
     <color name="white">#FFF</color>
     <color name="green">#FF1CBA4E</color>
     <color name="red">#df0e0e</color>
+
+    <!--cores de telas de intro-->
+    <color name="bg_1">#C0CCDA</color>  <!--#b12515-->
+    <color name="bg_2">#C0CCDA</color>
+    <color name="bg_3">#C0CCDA</color>
+
+    <!--cores dots ativos-->
+    <color name="dot_ativo">#000000</color>
+
+    <!--cores dots inativos-->
+    <color name="dot_inativo">#fff</color>
 </resources>

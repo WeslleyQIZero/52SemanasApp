@@ -5,4 +5,7 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="title_slide1">Desafio 52 Semanas</string>
+    <string name="des_slide1">Ajudando você a poupar seu dinheiro</string>
 </resources>

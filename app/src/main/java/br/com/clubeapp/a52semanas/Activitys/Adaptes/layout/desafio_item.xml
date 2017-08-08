@@ -3,14 +3,14 @@
     android:background="#EFF2F7"
     android:layout_width="match_parent"
     android:weightSum="6"
-    android:layout_height="105dp">
+    android:layout_height="120dp">
 
         <LinearLayout
             android:id="@+id/content_percent"
-            android:layout_weight="1.2"
+            android:layout_weight="1"
             android:layout_width="0dp"
             android:layout_height="match_parent"
-            android:layout_marginLeft="10dp"
+            android:layout_marginLeft="20dp"
             android:layout_marginRight="10dp"
             android:gravity="center_vertical">
             <TextView
@@ -25,7 +25,7 @@
         </LinearLayout>
 
        <LinearLayout
-           android:layout_weight="3.5"
+           android:layout_weight="4"
            android:layout_width="0dp"
            android:layout_height="match_parent"
            android:orientation="vertical">
@@ -34,7 +34,7 @@
                android:id="@+id/flag1"
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
-               android:textSize="10sp"/>
+               android:textSize="25sp"/>
 
            <TextView
                android:id="@+id/tv_objetivo"
@@ -91,7 +91,7 @@
                 android:id="@+id/flag"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="10sp"/>
+                android:textSize="25sp" />
 
             <ImageView
                 android:id="@+id/icon"
