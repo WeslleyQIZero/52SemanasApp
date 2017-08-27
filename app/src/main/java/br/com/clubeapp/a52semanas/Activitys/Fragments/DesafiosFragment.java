@@ -114,8 +114,9 @@ public class DesafiosFragment extends Fragment{
 
                         DesafioDaos desafioDaos = new DesafioDaos(getContext());
                         desafioDaos.inserir(desafio);
+                        mAdapter = new DesafioAdapter(desafioDaos.Listar(),getContext());
+                        mAdapter.notifyDataSetChanged();
 
-                        mAdapter.updateList(desafio);
                     }
                 })
                 .onNegative(new MaterialDialog.SingleButtonCallback() {

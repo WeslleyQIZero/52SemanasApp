@@ -1,6 +1,7 @@
 package br.com.clubeapp.a52semanas.Activitys.Models;
 
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -10,7 +11,7 @@ import java.util.Date;
  * Created by Denis Souza on 11/07/2017.
  */
 
-public class Desafio {
+public class Desafio  implements Serializable{
 
     private Long id;
     private String objetivo;

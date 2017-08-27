@@ -119,8 +119,8 @@ public class DesafioDaos {
 	public Desafio Buscar(String buscar) {
 
 		Desafio list = null;
-		String[] cadastro = new String[] {"_id," + nome + "," + datainicio
-				+ "," + dataVencimento + "," + valor+ "," +visualizacao+ "," +porcentagem+ "," +semana};
+		String[] cadastro = new String[] { "_id," + nome + "," + datainicio
+				+ "," + dataVencimento + "," + valor+ "," +visualizacao+ "," +porcentagem+ "," +semana };
 
 		Cursor vrConsulta = vrRefEscrita.query(tabela, cadastro, "_id =?",
 				new String[] { buscar }, null, null, "nome");
@@ -128,12 +128,16 @@ public class DesafioDaos {
 		while (vrConsulta.getCount() > cont) {
 			if (vrConsulta.getCount() > 0) {
 				vrConsulta.moveToNext();
+
 				Desafio desafio =new Desafio();
 				desafio.setId(Long.parseLong(vrConsulta.getString(0)));
 				desafio.setValorInicial(Double.parseDouble(vrConsulta.getString(4)));
 				desafio.setObjetivo(vrConsulta.getString(1));
 				desafio.setDataInicio(Desafio.stringToDate(vrConsulta.getString(2)));
 				desafio.setDataFim(Desafio.stringToDate(vrConsulta.getString(3)));
+				desafio.setVisualizacao((vrConsulta.getString(5)));
+				desafio.setPorcentagem(Integer.parseInt(vrConsulta.getString(6)));
+				desafio.setSemana(Integer.parseInt(vrConsulta.getString(7)));
 				list = (desafio);
 
 			}
