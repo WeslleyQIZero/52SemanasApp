@@ -1,4 +1,6 @@
 package br.com.clubeapp.a52semanas.Activitys.Daos;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import android.content.ContentValues;
 import android.content.Context;
@@ -46,13 +48,16 @@ public class DesafioDaos {
 	// text not null,valor bigint not null,dataInicial text not
 	// null,dataVenciemnto text not null,status text not null)
 
+
 	public void inserir(Desafio modelo) {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+		String datainico = df.format(modelo.getDataInicio());
 		try {
 			vrRefEscrita.execSQL("insert into " + tabela + " (" + nome + ","
-					+ valor + "," + datainicio + "," + dataVencimento
+					+ valor + "," + datainicio + "," + dataVencimento+"," + visualizacao+"," + porcentagem+"," + semana
 					+ ")values('" + modelo.getObjetivo() + "','" + modelo.getValorInicial()
-					+ "','" + modelo.getDataInicio() + "','"
-					+ modelo.getVisualizacao() + "')");
+					+ "','" + datainico + "','"+ modelo.getDataFim() + "','"
+					+ modelo.getVisualizacao() + "','"+ modelo.getPorcentagem()+ "','"+modelo.getSemana()+"')");
 
 		} catch (Exception e) {
 			e.printStackTrace();

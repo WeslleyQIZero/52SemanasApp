@@ -116,6 +116,7 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
 
     public void updateList(Desafio item) {
         insertItem(item);
+
     }
 
     private void insertItem(Desafio item) {
