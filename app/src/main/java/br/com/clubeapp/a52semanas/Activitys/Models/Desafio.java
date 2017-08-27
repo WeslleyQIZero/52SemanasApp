@@ -16,14 +16,14 @@ public class Desafio {
     private String objetivo;
     private Double valorInicial;
     private Date dataInicio;
-    private String visualizacao;
+    private int visualizacao;
     private Date dataFim;
     private int porcentagem;
     private  int semana;
 
     public Desafio(){};
 
-    public Desafio(Long id,String pNome, Date pDatainicio,String pTipoViasualização,Double pValor){
+    public Desafio(Long id,String pNome, Date pDatainicio,int pTipoViasualização,Double pValor){
         DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         String datetext = df.format(pDatainicio);
 
@@ -79,11 +79,11 @@ public class Desafio {
         this.dataInicio = dataInicio;
     }
 
-    public String getVisualizacao() {
+    public int getVisualizacao() {
         return visualizacao;
     }
 
-    public void setVisualizacao(String visualizacao) {
+    public void setVisualizacao(int visualizacao) {
         this.visualizacao = visualizacao;
     }
 
