@@ -2,13 +2,23 @@ package br.com.clubeapp.a52semanas.Activitys.Fragments;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.graphics.RectF;
+import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.InputType;
+import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -45,9 +55,10 @@ public class DesafiosFragment extends Fragment{
     private int year,month,day;
     private Date date;
     private Desafio desafio = new Desafio();
-
+    private Paint p = new Paint();
     private RadioGroup radioGroup;
     private RadioButton radioButton;
+    private View view;
 
     public DesafiosFragment() {}
 
@@ -55,7 +66,7 @@ public class DesafiosFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_desafios, container, false);
+        view = inflater.inflate(R.layout.fragment_desafios, container, false);
 
         //implementaçao floatingActionButton novo desafio
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -68,9 +79,6 @@ public class DesafiosFragment extends Fragment{
 
         //chamada para o metodo que monta a recyclerview
         configRecyclerView(view);
-
-
-
 
         return view;
     }

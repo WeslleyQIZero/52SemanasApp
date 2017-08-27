@@ -8,4 +8,9 @@
 
     <string name="title_slide1">Desafio 52 Semanas</string>
     <string name="des_slide1">Ajudando você a poupar seu dinheiro</string>
+
+    <!--  Action Mode Menu Items -->
+    <string name="delete">Delete</string>
+    <string name="copy">Copy</string>
+    <string name="forward">Forward</string>
 </resources>
