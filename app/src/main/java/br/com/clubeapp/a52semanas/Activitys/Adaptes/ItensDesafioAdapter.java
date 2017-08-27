@@ -72,7 +72,7 @@ public class ItensDesafioAdapter extends RecyclerView.Adapter<ItensDesafioAdapte
         public TextView porcentagem;
         public TextView visualizacao;
         private List<Desafio> desafioList;
-        private Context context;
+
         RadioGroup radioGroup;
         RadioButton radioButton;
 
