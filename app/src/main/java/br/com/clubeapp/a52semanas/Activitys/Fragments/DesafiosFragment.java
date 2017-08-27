@@ -107,7 +107,7 @@ public class DesafiosFragment extends Fragment{
 
                         radioButton = (RadioButton)dialog.getCustomView().findViewById(selectedId);
 
-                        desafio.setVisualizacao(selectedId.toString());
+                        desafio.setVisualizacao(radioButton.getText().toString());
                         desafio.setObjetivo(objetivo.getText().toString());
                         desafio.setValorInicial(Double.parseDouble(valorInicial.getText().toString()));
                         desafio.setDataInicio(date);

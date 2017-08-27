@@ -7,6 +7,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import java.text.SimpleDateFormat;
@@ -50,6 +52,8 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
         public TextView visualizacao;
         private List<Desafio> desafioList;
         private Context context;
+        RadioGroup radioGroup;
+        RadioButton radioButton;
 
 
         public DesafioHolder(View itemView,Context c, List<Desafio> desafios) {
@@ -62,6 +66,7 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
             dataInicial = (TextView) itemView.findViewById(R.id.tv_datainicial);
             dataFinal = (TextView) itemView.findViewById(R.id.tv_datafinal);
             visualizacao = (TextView) itemView.findViewById(R.id.tv_visualizacao);
+            radioGroup = (RadioGroup) itemView.findViewById(R.id.radio);
 
             itemView.setOnClickListener(this);
         }
@@ -84,6 +89,7 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
     public void onBindViewHolder(DesafioHolder holder, int position) {
         SimpleDateFormat formato = new SimpleDateFormat("dd/MM/yyyy");
 
+
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(desafios.get(position).getDataInicio());
 
@@ -93,7 +99,8 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
         holder.valorInicial.setText(String.valueOf(desafios.get(position).getValorInicial()));
         holder.dataInicial.setText(dataInicio);
 
-        switch (desafios.get(position).getVisualizacao()){
+
+        switch (desafios.get(position).getVisualizacao().toString()){
             case "Dia":
                 holder.visualizacao.setText("Diariamente");
                 break;

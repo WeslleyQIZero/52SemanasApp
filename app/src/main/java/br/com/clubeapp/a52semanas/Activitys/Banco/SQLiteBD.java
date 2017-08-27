@@ -13,7 +13,7 @@ public class SQLiteBD extends SQLiteOpenHelper {
 	}
 
 	public final String[] scriptCriaBD = new String[] {
-			"CREATE TABLE IF NOT EXISTS objetivo (_id integer primary key autoincrement,nome text not null,dataInicial text not null,dataVencimento text not null,valor double not null,visualizacao integer not null,pocentagem integer not null,semana integer not null);" };
+			"CREATE TABLE IF NOT EXISTS objetivo (_id integer primary key autoincrement,nome text not null,dataInicial text not null,dataVencimento text not null,valor double not null,visualizacao text not null,pocentagem integer not null,semana integer not null);" };
 	
 	public final String scriptApagaBD = "DROP TABLE IF EXISTS objetivo";
 
@@ -21,7 +21,7 @@ public class SQLiteBD extends SQLiteOpenHelper {
 	public void onCreate(SQLiteDatabase vrDB){
 		for (int iIndex = 0; iIndex < scriptCriaBD.length; iIndex++) {
 			vrDB.execSQL(scriptCriaBD[iIndex]);
-   	//vrDB.execSQL(scriptApagaBD);
+   //	vrDB.execSQL(scriptApagaBD);
 		}
 
 	}
