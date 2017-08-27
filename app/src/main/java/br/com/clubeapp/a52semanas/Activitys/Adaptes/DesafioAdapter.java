@@ -23,7 +23,7 @@ import br.com.clubeapp.a52semanas.R;
  */
 
 public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioHolder>{
-    private ArrayList<Desafio> desafios;
+    private ArrayList<Desafio> desafios = new ArrayList<>();
     private  Context context;
 
     public DesafioAdapter(ArrayList desafio,Context c) {
@@ -121,5 +121,10 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
     private void insertItem(Desafio item) {
         desafios.add(item);
         notifyItemInserted(getItemCount());
+    }
+
+    private void add(ArrayList<Desafio> desafios){
+        desafios.addAll(desafios);
+        notifyDataSetChanged();
     }
 }
