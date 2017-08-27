@@ -80,8 +80,7 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
             Desafio desafio = this.desafioList.get(position);
             Intent intent = new Intent(this.context, ItensDesafioActivity.class);
 
-            intent.putExtra("objetivo",desafios.get(position).getObjetivo());
-            intent.putExtra("valorinicial",desafios.get(position).getValorInicial());
+            intent.putExtra("objetivo",desafio.getId().toString());
 
             this.context.startActivity(intent);
         }

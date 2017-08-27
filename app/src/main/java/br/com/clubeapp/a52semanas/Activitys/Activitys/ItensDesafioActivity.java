@@ -13,9 +13,12 @@ import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.DesafioAdapter;
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.ItensDesafioAdapter;
+import br.com.clubeapp.a52semanas.Activitys.Daos.DesafioDaos;
 import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
 import br.com.clubeapp.a52semanas.Activitys.Utils.DividerItemDecoration;
 import br.com.clubeapp.a52semanas.R;
@@ -42,44 +45,55 @@ public class ItensDesafioActivity extends AppCompatActivity {
         linearLayoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(linearLayoutManager);
 
-        mAdapter = new ItensDesafioAdapter(desafiosList,this);
+        mAdapter = new ItensDesafioAdapter(desafiosList, this);
 
         recyclerView.setAdapter(mAdapter);
 
         recyclerView.addItemDecoration(new DividerItemDecoration(this, LinearLayoutManager.VERTICAL));
     }
 
-    public  ArrayList<Desafio> preencherLista(){
+    public ArrayList<Desafio> preencherLista() {
 
-        for(int i=1;i<52;i++) {
-            Desafio d = new Desafio();
-            d.setObjetivo(getIntent().getStringExtra("objetivo"));
-            d.setValorInicial(100.0);
-            d.setSemana(i);
-            desafiosList.add(d);
+        DesafioDaos daos = new DesafioDaos(this);
+
+        Desafio d = daos.Buscar(getIntent().getStringExtra("objetivo"));
+        Double valor = d.getValorInicial();
+        Calendar c = new GregorianCalendar(d.getDataInicio().getYear(),d.getDataInicio().getMonth(),d.getDataInicio().getDay());
+        for (int i = 1; i <= 52; i++) {
+            Desafio desafio = new Desafio();
+            desafio.setSemana(i);
+            desafio.setValorInicial(valor);
+            desafio.setObjetivo(d.getObjetivo());
+            c.add(Calendar.DAY_OF_MONTH, +(i*7));
+            desafio.setDataInicio(d.getDataInicio());
+            Double total=valor+(desafiosList.size()>0?(Double.parseDouble(desafiosList.get(desafiosList.size()-1).getVisualizacao())):0.0);
+            desafio.setVisualizacao(total+"");
+            valor = valor + d.getValorInicial();
+            desafiosList.add(desafio);
+
         }
         return desafiosList;
     }
 
-    public boolean onOptionsItemSelected(MenuItem item){
-        if (item.getItemId() == android.R.id.home){
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {
             finish();
         }
-        if(item.getItemId()==R.id.menu_item_progress){
+        if (item.getItemId() == R.id.menu_item_progress) {
             progressDialog();
         }
         return super.onOptionsItemSelected(item);
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu){
+    public boolean onCreateOptionsMenu(Menu menu) {
 
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.menu_desafio_item, menu);
         return true;
     }
 
-    public void progressDialog(){
+    public void progressDialog() {
         boolean showMinMax = true;
         MaterialDialog dialog = new MaterialDialog.Builder(this)
                 .title("Meu Progresso")
