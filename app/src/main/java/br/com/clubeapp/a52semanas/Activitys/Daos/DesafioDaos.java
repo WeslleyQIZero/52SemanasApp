@@ -102,6 +102,10 @@ public class DesafioDaos {
 				desafio.setObjetivo(vrConsulta.getString(1));
 				desafio.setDataInicio(Desafio.stringToDate(vrConsulta.getString(2)));
 				desafio.setDataFim(Desafio.stringToDate(vrConsulta.getString(3)));
+				desafio.setVisualizacao((vrConsulta.getString(5)));
+				desafio.setPorcentagem(Integer.parseInt(vrConsulta.getString(6)));
+				desafio.setSemana(Integer.parseInt(vrConsulta.getString(7)));
+
 				list.add(desafio);
 
 			}
