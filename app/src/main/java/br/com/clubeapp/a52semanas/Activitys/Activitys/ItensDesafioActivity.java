@@ -12,6 +12,8 @@ import android.widget.Toast;
 import com.afollestad.materialdialogs.GravityEnum;
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -58,16 +60,17 @@ public class ItensDesafioActivity extends AppCompatActivity {
 
         Desafio d = daos.Buscar(getIntent().getStringExtra("objetivo"));
         Double valor = d.getValorInicial();
-        Calendar c = new GregorianCalendar(d.getDataInicio().getYear(),d.getDataInicio().getMonth(),d.getDataInicio().getDay());
+        Calendar c = new GregorianCalendar(d.getDataInicio().getYear(), d.getDataInicio().getMonth(), d.getDataInicio().getDay());
         for (int i = 1; i <= 52; i++) {
             Desafio desafio = new Desafio();
             desafio.setSemana(i);
             desafio.setValorInicial(valor);
+            c.add(Calendar.DAY_OF_MONTH, +(i * 7));
             desafio.setObjetivo(d.getObjetivo());
-            c.add(Calendar.DAY_OF_MONTH, +(i*7));
-            desafio.setDataInicio(d.getDataInicio());
-            Double total=valor+(desafiosList.size()>0?(Double.parseDouble(desafiosList.get(desafiosList.size()-1).getVisualizacao())):0.0);
-            desafio.setVisualizacao(total+"");
+            desafio.setDataFim(c.getTime());
+
+            Double total = valor + (desafiosList.size() > 0 ? (Double.parseDouble(desafiosList.get(desafiosList.size() - 1).getVisualizacao())) : 0.0);
+            desafio.setVisualizacao(total + "");
             valor = valor + d.getValorInicial();
             desafiosList.add(desafio);
 
