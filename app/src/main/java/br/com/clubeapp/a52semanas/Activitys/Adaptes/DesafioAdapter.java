@@ -2,6 +2,7 @@ package br.com.clubeapp.a52semanas.Activitys.Adaptes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
@@ -10,10 +11,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import com.afollestad.materialdialogs.DialogAction;
+import com.afollestad.materialdialogs.MaterialDialog;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -31,6 +36,7 @@ import br.com.clubeapp.a52semanas.R;
 
 public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioHolder>{
     private ArrayList<Desafio> desafios = new ArrayList<>();
+    private ArrayList<Desafio> desafioUpdate = new ArrayList<>();
     private  Context context;
     private int position;
 
@@ -109,12 +115,48 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
             switch (item.getItemId()) {
 
                 case R.id.item_delete:
-                    removeItem(position);
+                    new MaterialDialog.Builder(context)
+                            .title("Remove Item ?")
+                            .positiveText("Ok")
+                            .negativeText("Cancelar")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+                                    removeItem(position);
+                                }
+                            })
+                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {}
+                            })
+                            .show();
+
                     mode.finish();
                     break;
 
                 case R.id.item_update:
-                    Toast.makeText(context,"Update",Toast.LENGTH_LONG).show();
+
+                    DesafioDaos desafioDaos = new DesafioDaos(context);
+                    desafioUpdate.add(desafioDaos.Buscar(desafios.get(position).getId().toString()));
+
+                    boolean wrapInScrollView = true;
+                    MaterialDialog dialog =
+                    new MaterialDialog.Builder(context)
+                            .title("Atualizar Dados")
+                            .customView(R.layout.form_novo_desafio, wrapInScrollView)
+                            .positiveText("Salvar")
+                            .negativeText("Cancelar")
+                            .onPositive(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {
+
+                                }
+                            })
+                            .onNegative(new MaterialDialog.SingleButtonCallback() {
+                                @Override
+                                public void onClick(@NonNull MaterialDialog dialog, @NonNull DialogAction which) {}
+                            })
+                            .show();
                     break;
             }
 
