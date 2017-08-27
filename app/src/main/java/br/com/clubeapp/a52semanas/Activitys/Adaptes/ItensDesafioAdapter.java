@@ -39,7 +39,7 @@ public class ItensDesafioAdapter extends RecyclerView.Adapter<ItensDesafioAdapte
         holder.semana.setText(String.valueOf(listDesafios.get(position).getSemana())+"º");
     }
 
-    public class ItemDesafio extends RecyclerView.ViewHolder {
+    public class ItemDesafio extends RecyclerView.ViewHolder{
 
         public TextView objetivo;
         public TextView valorInicial;

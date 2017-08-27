@@ -2,14 +2,18 @@ package br.com.clubeapp.a52semanas.Activitys.Adaptes;
 
 import android.content.Context;
 import android.content.Intent;
+import android.support.v7.app.AppCompatActivity;
+import android.support.v7.view.ActionMode;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -17,6 +21,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import br.com.clubeapp.a52semanas.Activitys.Activitys.ItensDesafioActivity;
+import br.com.clubeapp.a52semanas.Activitys.Daos.DesafioDaos;
 import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
 import br.com.clubeapp.a52semanas.R;
 
@@ -27,6 +32,7 @@ import br.com.clubeapp.a52semanas.R;
 public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioHolder>{
     private ArrayList<Desafio> desafios = new ArrayList<>();
     private  Context context;
+    private int position;
 
     public DesafioAdapter(ArrayList desafio,Context c) {
         this.context =c ;
@@ -42,7 +48,7 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
     }
 
 
-    public class DesafioHolder extends RecyclerView.ViewHolder implements  View.OnClickListener{
+    public class DesafioHolder extends RecyclerView.ViewHolder implements  View.OnClickListener,View.OnLongClickListener{
 
         public TextView objetivo;
         public TextView valorInicial;
@@ -52,9 +58,6 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
         public TextView visualizacao;
         private List<Desafio> desafioList;
         private Context context;
-        RadioGroup radioGroup;
-        RadioButton radioButton;
-
 
         public DesafioHolder(View itemView,Context c, List<Desafio> desafios) {
             super(itemView);
@@ -66,9 +69,9 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
             dataInicial = (TextView) itemView.findViewById(R.id.tv_datainicial);
             dataFinal = (TextView) itemView.findViewById(R.id.tv_datafinal);
             visualizacao = (TextView) itemView.findViewById(R.id.tv_visualizacao);
-            radioGroup = (RadioGroup) itemView.findViewById(R.id.radio);
 
             itemView.setOnClickListener(this);
+            itemView.setOnLongClickListener(this);
         }
 
         @Override
@@ -82,8 +85,48 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
 
             this.context.startActivity(intent);
         }
+
+        @Override
+        public boolean onLongClick(View view) {
+            ((AppCompatActivity)view.getContext()).startSupportActionMode(actionModeCallbacks);
+            return  true;
+        }
     }
 
+    private ActionMode.Callback actionModeCallbacks = new ActionMode.Callback() {
+        @Override
+        public boolean onCreateActionMode(ActionMode mode, Menu menu) {
+            mode.getMenuInflater().inflate(R.menu.menu_acao, menu);
+            return true;
+        }
+
+        @Override
+        public boolean onPrepareActionMode(ActionMode mode, Menu menu) {
+           return false;
+        }
+
+        @Override
+        public boolean onActionItemClicked(ActionMode mode, MenuItem item) {
+
+            switch (item.getItemId()) {
+
+                case R.id.item_delete:
+                    Toast.makeText(context,""+item.getItemId(),Toast.LENGTH_LONG).show();
+                    removeItem(position);
+                    mode.finish();
+
+                case R.id.item_update:
+                    Toast.makeText(context,"Update",Toast.LENGTH_LONG).show();
+            }
+
+            return true;
+        }
+
+        @Override
+        public void onDestroyActionMode(ActionMode mode) {
+            notifyDataSetChanged();
+        }
+    };
 
     @Override
     public void onBindViewHolder(DesafioHolder holder, int position) {
@@ -131,8 +174,16 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
         notifyItemInserted(getItemCount());
     }
 
-    private void add(ArrayList<Desafio> desafios){
-        desafios.addAll(desafios);
-        notifyDataSetChanged();
+    public void removeItem(int position){
+        DesafioDaos desafioDaos = new DesafioDaos(context);
+        desafioDaos.deleta(Integer.parseInt(desafios.get(position).getId().toString()));
+
+        desafios.remove(position);
+        notifyItemRemoved(position);
+        notifyItemRangeRemoved(position,desafios.size());
+    }
+
+    public void updateItem(int position){
+
     }
 }
