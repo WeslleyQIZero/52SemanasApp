@@ -47,7 +47,6 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
         return dH;
     }
 
-
     public class DesafioHolder extends RecyclerView.ViewHolder implements  View.OnClickListener,View.OnLongClickListener{
 
         public TextView objetivo;
@@ -110,12 +109,13 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
             switch (item.getItemId()) {
 
                 case R.id.item_delete:
-                    Toast.makeText(context,""+item.getItemId(),Toast.LENGTH_LONG).show();
                     removeItem(position);
                     mode.finish();
+                    break;
 
                 case R.id.item_update:
                     Toast.makeText(context,"Update",Toast.LENGTH_LONG).show();
+                    break;
             }
 
             return true;
