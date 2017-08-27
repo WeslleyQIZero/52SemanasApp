@@ -1,6 +1,7 @@
 package br.com.clubeapp.a52semanas.Activitys.Fragments;
 
 import android.app.DatePickerDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
@@ -30,6 +31,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.DesafioAdapter;
+import br.com.clubeapp.a52semanas.Activitys.Daos.DesafioDaos;
 import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
 import br.com.clubeapp.a52semanas.Activitys.Utils.DividerItemDecoration;
 import br.com.clubeapp.a52semanas.R;
@@ -67,6 +69,9 @@ public class DesafiosFragment extends Fragment{
         //chamada para o metodo que monta a recyclerview
         configRecyclerView(view);
 
+
+
+
         return view;
     }
 
@@ -98,14 +103,17 @@ public class DesafiosFragment extends Fragment{
                         //recuperando radio button
                         radioGroup = (RadioGroup)dialog.getCustomView().findViewById(R.id.radio);
 
-                        int selectedId = radioGroup.getCheckedRadioButtonId();
+                        Integer selectedId = radioGroup.getCheckedRadioButtonId();
 
                         radioButton = (RadioButton)dialog.getCustomView().findViewById(selectedId);
 
-                        desafio.setVisualizacao(radioButton.getText().toString());
+                        desafio.setVisualizacao(selectedId.toString());
                         desafio.setObjetivo(objetivo.getText().toString());
                         desafio.setValorInicial(Double.parseDouble(valorInicial.getText().toString()));
                         desafio.setDataInicio(date);
+
+                        DesafioDaos desafioDaos = new DesafioDaos(getContext());
+                        desafioDaos.inserir(desafio);
 
                         mAdapter.updateList(desafio);
                     }
@@ -148,8 +156,10 @@ public class DesafiosFragment extends Fragment{
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+        DesafioDaos desafioDaos = new DesafioDaos(getContext());
 
-        mAdapter = new DesafioAdapter(new ArrayList<>(0),getContext());
+
+        mAdapter = new DesafioAdapter(desafioDaos.Listar(),getContext());
 
         recyclerView.setAdapter(mAdapter);
 
