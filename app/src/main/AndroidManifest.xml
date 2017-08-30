@@ -8,19 +8,17 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity
-            android:name=".Activitys.Activitys.IntroActivity">
+        <activity android:name=".Activitys.Activitys.IntroActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity android:name=".Activitys.Activitys.ItensDesafioActivity" />
-
-        <activity android:name=".Activitys.Activitys.DesafiosActivity"
+        <activity
+            android:name=".Activitys.Activitys.DesafiosActivity"
             android:label="@string/app_name"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
+
 </manifest>

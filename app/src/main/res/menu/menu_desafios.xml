@@ -3,8 +3,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="br.com.clubeapp.a52semanas.Activitys.Activitys.DesafiosActivity">
 
-    <item android:id="@+id/menu_item"
+    <item android:id="@+id/menu_item_search"
         android:icon="@drawable/ic_search"
-        android:title=""
-        app:showAsAction="always"/>
+        android:title="Buscar"
+        app:showAsAction="ifRoom|collapseActionView"
+        app:actionViewClass="android.support.v7.widget.SearchView"/>
 </menu>

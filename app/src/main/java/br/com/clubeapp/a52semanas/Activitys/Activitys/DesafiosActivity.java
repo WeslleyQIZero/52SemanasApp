@@ -1,20 +1,25 @@
 package br.com.clubeapp.a52semanas.Activitys.Activitys;
 
+import android.app.SearchManager;
+import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.TabLayout;
 import android.support.v4.content.ContextCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.Menu;
+import android.view.MenuItem;
 import android.widget.TextView;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.TabsAdapter;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.AjudaFragment;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.DesafiosFragment;
 import br.com.clubeapp.a52semanas.Activitys.Fragments.SobreFragment;
-import br.com.clubeapp.a52semanas.Activitys.Utils.SlidingTabLayout;
 import br.com.clubeapp.a52semanas.R;
 
 public class DesafiosActivity extends AppCompatActivity {
@@ -60,11 +65,5 @@ public class DesafiosActivity extends AppCompatActivity {
         adapter.addFrag(new AjudaFragment(), "AJUDA");
         adapter.addFrag(new SobreFragment(), "SOBRE");
         viewPager.setAdapter(adapter);
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu){
-        getMenuInflater().inflate(R.menu.menu_desafios, menu);
-        return super.onCreateOptionsMenu(menu);
     }
 }

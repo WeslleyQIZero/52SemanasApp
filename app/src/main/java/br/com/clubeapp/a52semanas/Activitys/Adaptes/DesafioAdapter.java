@@ -227,4 +227,10 @@ public class DesafioAdapter extends RecyclerView.Adapter<DesafioAdapter.DesafioH
     public void updateItem(int position){
 
     }
+
+    public void setFilter(ArrayList<Desafio> newsList){
+        desafios = new ArrayList<>();
+        desafios.addAll(newsList);
+        notifyDataSetChanged();
+    }
 }

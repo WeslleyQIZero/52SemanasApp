@@ -1,32 +1,28 @@
 package br.com.clubeapp.a52semanas.Activitys.Fragments;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.graphics.RectF;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.res.ResourcesCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.helper.ItemTouchHelper;
+import android.support.v7.widget.SearchView;
 import android.text.InputType;
-import android.util.DisplayMetrics;
-import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.DialogAction;
@@ -38,7 +34,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.Locale;
 
 import br.com.clubeapp.a52semanas.Activitys.Adaptes.DesafioAdapter;
 import br.com.clubeapp.a52semanas.Activitys.Daos.DesafioDaos;
@@ -46,7 +41,7 @@ import br.com.clubeapp.a52semanas.Activitys.Models.Desafio;
 import br.com.clubeapp.a52semanas.Activitys.Utils.DividerItemDecoration;
 import br.com.clubeapp.a52semanas.R;
 
-public class DesafiosFragment extends Fragment{
+public class DesafiosFragment extends Fragment implements SearchView.OnQueryTextListener{
 
     private RecyclerView recyclerView;
     private RecyclerView.LayoutManager linearLayoutManager;
@@ -67,6 +62,7 @@ public class DesafiosFragment extends Fragment{
                              Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_desafios, container, false);
+        setHasOptionsMenu(true);
 
         //implementaçao floatingActionButton novo desafio
         FloatingActionButton fab = (FloatingActionButton) view.findViewById(R.id.fab);
@@ -124,7 +120,7 @@ public class DesafiosFragment extends Fragment{
                         desafioDaos.inserir(desafio);
 
                        // mAdapter = new DesafioAdapter(desafioDaos.Listar(),getContext());
-                        mAdapter = new DesafioAdapter(desafioDaos.Listar(),getContext());
+                        mAdapter = new DesafioAdapter(desafioDaos.listar(),getContext());
 
                         recyclerView.setAdapter(mAdapter);
                         mAdapter.notifyDataSetChanged();
@@ -169,10 +165,9 @@ public class DesafiosFragment extends Fragment{
 
         linearLayoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(linearLayoutManager);
+
         DesafioDaos desafioDaos = new DesafioDaos(getContext());
-
-
-        mAdapter = new DesafioAdapter(desafioDaos.Listar(),getContext());
+        mAdapter = new DesafioAdapter(desafioDaos.listar(),getContext());
 
         recyclerView.setAdapter(mAdapter);
 
@@ -210,5 +205,44 @@ public class DesafiosFragment extends Fragment{
             month= c.get(Calendar.MONTH);
             day = c.get(Calendar.DAY_OF_MONTH);
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.menu_desafios, menu);
+
+        MenuItem menuItem = menu.findItem(R.id.menu_item_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(menuItem);
+
+        searchView.setQueryHint(getResources().getString(R.string.search_hint));
+
+        searchView.setOnQueryTextListener(this);
+
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onQueryTextSubmit(String query) {
+        return false;
+    }
+
+    @Override
+    public boolean onQueryTextChange(String newText) {
+        newText = newText.toLowerCase();
+        DesafioDaos desafioDaos = new DesafioDaos(getContext());
+        ArrayList<Desafio> desafiosList = new ArrayList<>();
+
+        for(Desafio des : desafioDaos.listar()){
+
+            String objetivo = des.getObjetivo().toLowerCase();
+            if (objetivo.contains(newText)){
+                desafiosList.add(des);
+            }
+        }
+
+        mAdapter.setFilter(desafiosList);
+
+        return true;
     }
 }

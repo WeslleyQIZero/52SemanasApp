@@ -84,7 +84,7 @@ public class DesafioDaos {
 
 	}
 
-	public ArrayList<Desafio> Listar() {
+	public ArrayList<Desafio> listar() {
 
 		ArrayList<Desafio> list = new ArrayList<Desafio>();
 		String[] cadastro = new String[] { "_id," + nome + "," + datainicio
